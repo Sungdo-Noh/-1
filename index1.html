@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>성도의 할일앱</title>
+</head>
+<body>
+  <h1>To do list</h1>
+  <input type="text" id="demo" placeholder="할 일을 입력하세요" />
+  <button id="demo1">추가</button>
+
+  <ul id="demo2"></ul>
+
+  <script>
+    // html 요소들과 연결
+    const todoInput = document.getElementById('demo');
+    const addButton = document.getElementById('demo1');
+    const todoList = document.getElementById('demo2');
+
+    // '추가' 버튼 클릭 시 할 일 추가
+    addButton.addEventListener('click', addTodo);
+    
+    function addTodo() {
+      const todoText = todoInput.value.trim();
+
+      if (todoText === '') {
+        alert('할 일을 입력하세요!');
+        return;
+      }
+
+      const li = document.createElement('li'); //리스트 태그 만들기
+      li.textContent = todoText; //todoText를 리스트화
+
+      // 삭제 버튼 추가
+      const deleteButton = document.createElement('button'); //버튼 태그 만들기
+      deleteButton.textContent = '삭제';
+      deleteButton.onclick = function() {
+        li.remove(); //클릭시 리스트를 삭제하겠다!
+      };
+
+      li.appendChild(deleteButton); //리스트에 버튼 추가
+
+      todoList.appendChild(li); // 전체리스트에 리스트 항목 추가
+
+      // 입력 필드 초기화
+      todoInput.value = '';
+    }
+  </script>
+</body>
+</html>
